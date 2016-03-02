@@ -1,0 +1,86 @@
+package draftform;
+
+public class Vec2 {
+	
+	public float x;
+	public float y;
+	
+	public Vec2() {
+	}
+	
+	public Vec2(float x, float y) {
+		
+		this.x = x;
+		this.y = y;
+	}
+	
+	public Vec2(Vec2 copy) {
+		
+		this(copy.x, copy.y);
+	}
+	
+	public Vec2 add(Vec2 toAdd) {
+		
+		return new Vec2(x + toAdd.x, y + toAdd.y);
+	}
+	
+	public Vec2 subtract(Vec2 toSub) {
+		
+		return new Vec2(x - toSub.x, y - toSub.y);
+	}
+	
+	public Vec2 multiply(Vec2 toMult) {
+		
+		return new Vec2(x * toMult.x, y * toMult.y);
+	}
+	
+	public Vec2 multiply(float scalar) {
+		
+		return new Vec2(x * scalar, y * scalar);
+	}
+	
+	public Vec2 divide(Vec2 toDiv) {
+		
+		return new Vec2(x / toDiv.x, y / toDiv.y);
+	}
+	
+	public Vec2 divide(float scalar) {
+		
+		return new Vec2(x / scalar, y / scalar);
+	}
+	
+	public Vec2 invert() {
+		
+		return new Vec2(1/x, 1/y);
+	}
+	
+	public Vec2 negate() {
+		
+		return new Vec2(-x, -y);
+	}
+	
+	public void translate(Vec2 delta) {
+		
+		x += delta.x;
+		y += delta.y;
+	}
+	
+	public float distance(Vec2 vec) {
+		
+		float a = vec.x - x;
+		float b = vec.y - y;
+		return (float) Math.sqrt(a * a + b * b);
+	}
+	
+	public void setPosition(Vec2 vec) {
+		
+		x = vec.x;
+		y = vec.y;
+	}
+	
+	@Override
+	public String toString() {
+		
+		return "[" + x + ", " + y + "]"; 
+	}
+}
