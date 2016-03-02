@@ -8,16 +8,6 @@ public class Draftform {
 	private ArrayList<Curve> curves = new ArrayList<>();
 	private ArrayList<Vertex> verts = new ArrayList<>();
 	
-	public void addCurve(Curve curve) {
-		
-		curves.add(curve);
-	}
-	
-	public void addVert(Vertex vert) {
-		
-		verts.add(vert);
-	}
-	
 	public List<Curve> getCurves() {
 		
 		return curves;

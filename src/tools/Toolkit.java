@@ -18,9 +18,8 @@ public class Toolkit {
 	private Set<Curve> selectedCurves = new HashSet<>();
 
 	private float snapRadius;
-
-	// TODO add a hitbox size for vertices
-	// TODO add a snapping feature
+	private boolean snapGrid;
+	private boolean snapPoint;
 
 	public Toolkit(Draftform draftform) {
 
@@ -30,28 +29,48 @@ public class Toolkit {
 	public void setTool(Tool tool) {
 
 		currentTool = tool;
+		
+		if (currentTool == null)
+			return;
+		
 		currentTool.setToolkit(this);
 		currentTool.reset();
 	}
 
 	public void start(Vec2 point) {
-		if (currentTool != null)
-			currentTool.start(point);
+		if (currentTool == null)
+			return;
+
+		Vertex vert = getSnap(point);
+		if (vert == null)
+			vert = new Vertex(point);
+
+		currentTool.start(vert);
 	}
 
 	public void modify(Vec2 point) {
-		if (currentTool != null)
-			currentTool.modify(point);
+		if (currentTool == null)
+			return;
+
+//		Vertex vert = getSnap(point);
+//		if (vert == null)
+		Vertex vert = new Vertex(point);
+
+		currentTool.modify(vert);
 	}
 
 	public void end() {
-		if (currentTool != null)
-			currentTool.end();
+		if (currentTool == null)
+			return;
+
+		currentTool.end();
 	}
 
 	public void resetTool() {
-		if (currentTool != null)
-			currentTool.reset();
+		if (currentTool == null)
+			return;
+
+		currentTool.reset();
 	}
 
 	public void setSnapRadius(float radius) {
@@ -83,6 +102,22 @@ public class Toolkit {
 
 		this.selectedCurves = selectedCurves;
 	}
+	
+	public void removeSelection() {
+		
+		for (Vertex vert : getSelectedVerts()) {
+            
+            for (Curve curve : vert.getCurves()){
+                curve.removeVertex(vert);
+                if (curve.getStart() == null)
+                    getDraftform().getCurves().remove(curve);
+            }
+            
+            getDraftform().getVerts().remove(vert);
+        }
+        
+        getSelectedVerts().clear();
+	}
 
 	public void clearSelection() {
 
@@ -93,5 +128,44 @@ public class Toolkit {
 	public Draftform getDraftform() {
 
 		return draftform;
+	}
+
+	public void setSnapToPoints(boolean snapPoint) {
+
+		this.snapPoint = snapPoint;
+	}
+
+	public boolean doesSnapToPoints() {
+
+		return snapPoint;
+	}
+
+	public Vertex getSnap(Vec2 point) {
+
+		if (doesSnapToPoints()) {
+			
+			for (Vertex vert : getDraftform().getVerts()) {
+
+				if (point.distance(vert) < getSnapRadius())
+					return vert;
+			}
+
+			for (Curve curve : getDraftform().getCurves()) {
+
+				if (point.distance(curve.getStart()) < getSnapRadius())
+					return curve.getStart();
+
+				if (point.distance(curve.getEnd()) < getSnapRadius())
+					return curve.getEnd();
+
+				for (Vertex vert : curve.getControlPoints()) {
+
+					if (point.distance(vert) < getSnapRadius())
+						return vert;
+				}
+			}
+		}
+
+		return null;
 	}
 }

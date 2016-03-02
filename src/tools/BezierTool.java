@@ -10,23 +10,21 @@ public class BezierTool extends Tool {
 	Vec2 currentHandle;
 	
 	@Override
-	public void start(Vec2 point) {
+	public void start(Vertex point) {
 		
 		toolkit.clearSelection();
-		
-		Vertex vert = new Vertex(point);
-		currentHandle = vert;
+		currentHandle = point;
 		
 		if (curve == null) {
 			curve = new Bezier();
-			toolkit.getDraftform().addCurve(curve);
+			toolkit.getDraftform().getCurves().add(curve);
 		}
 		
-		curve.addVertex(vert);
+		curve.addVertex(point);
 	}
 
 	@Override
-	public void modify(Vec2 point) {
+	public void modify(Vertex point) {
 		if (currentHandle != null)
 			currentHandle.setPosition(point);
 	}

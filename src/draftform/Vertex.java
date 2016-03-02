@@ -1,10 +1,11 @@
 package draftform;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Vertex extends Vec2 {
 	
-	private ArrayList<Curve> curves = new ArrayList<>();
+	private List<Curve> curves = new ArrayList<>();
 	
 	public Vertex(Vec2 vec) {
 		
@@ -21,11 +22,8 @@ public class Vertex extends Vec2 {
 		curves.remove(curve);
 	}
 
-	public Curve[] getCurves() {
+	public List<Curve> getCurves() {
 		
-		Curve[] array = new Curve[curves.size()];
-		curves.toArray(array);
-		
-		return array;
+		return curves;
 	}
 }

@@ -5,6 +5,8 @@ public abstract class Curve {
 	public abstract Vertex getStart();
 	public abstract Vertex getEnd();
 	public abstract Vertex[] getControlPoints();
+	public abstract void addVertex(Vertex v);
+	public abstract void removeVertex(Vertex v);
 	
 	public abstract float getLength();
 	

@@ -1,19 +1,18 @@
 package tools;
 
-import draftform.Vec2;
 import draftform.Vertex;
 
 public class VertexTool extends Tool {
 
 	public Vertex currentVertex;
 
-	public void start(Vec2 point) {
+	public void start(Vertex point) {
 		currentVertex = new Vertex(point);
-		toolkit.getDraftform().addVert(currentVertex);
+		toolkit.getDraftform().getVerts().add(currentVertex);
 		toolkit.clearSelection();
 	}
 
-	public void modify(Vec2 point) {
+	public void modify(Vertex point) {
 		if (currentVertex != null)
 			currentVertex.setPosition(point);
 	}

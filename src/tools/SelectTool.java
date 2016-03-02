@@ -14,7 +14,7 @@ public class SelectTool extends Tool {
 	private boolean movedPastSnap = false;
 
 	@Override
-	public void start(Vec2 point) {
+	public void start(Vertex point) {
 
 		start = point;
 		
@@ -42,7 +42,7 @@ public class SelectTool extends Tool {
 		toolkit.clearSelection();
 	}
 	
-	private boolean select(Vec2 point, Vertex test) {
+	private boolean select(Vertex point, Vertex test) {
 		
 		boolean found = false;
 		if (test.distance(point) <= toolkit.getSnapRadius()) {
@@ -67,7 +67,7 @@ public class SelectTool extends Tool {
 	}
 
 	@Override
-	public void modify(Vec2 point) {
+	public void modify(Vertex point) {
 		
 		if (movedPastSnap || start.distance(point) > toolkit.getSnapRadius()) {
 			movedPastSnap = true;

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup">
     </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="focusable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -31,7 +32,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jpnlButtons" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jpnlDraw" pref="665" max="32767" attributes="0"/>
+              <Component id="jpnlDraw" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -57,6 +58,7 @@
             <EtchetBorder/>
           </Border>
         </Property>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -101,6 +103,7 @@
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Select"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradSelectActionPerformed"/>
@@ -112,6 +115,7 @@
               <ComponentRef name="buttonGroup"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Vertex"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradVertexActionPerformed"/>
@@ -123,6 +127,7 @@
               <ComponentRef name="buttonGroup"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Bezier"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradBezierActionPerformed"/>
@@ -134,6 +139,7 @@
               <ComponentRef name="buttonGroup"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Circle"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradCircleActionPerformed"/>
@@ -145,6 +151,7 @@
               <ComponentRef name="buttonGroup"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Polygon"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradPolygonActionPerformed"/>
@@ -170,6 +177,7 @@
         <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jpnlDrawMouseDragged"/>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpnlDrawMousePressed"/>
         <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jpnlDrawMouseReleased"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jpnlDrawKeyTyped"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel() {&#xa;&#xa;    public void paintComponent(Graphics g) {&#xa;        super.paintComponent(g);&#xa;&#xa;        g.setColor(Color.BLACK);&#xa;        int pointsize = 7;&#xa;        int offset = pointsize/2;&#xa;        for (Curve curve : draftform.getCurves()) {&#xa;&#xa;            g.fillOval(&#xa;                (int) curve.getStart().x - offset,&#xa;                (int) curve.getStart().y - offset,&#xa;                pointsize, pointsize);&#xa;            g.fillOval(&#xa;                (int) curve.getEnd().x - offset,&#xa;                (int) curve.getEnd().y - offset,&#xa;                pointsize, pointsize);&#xa;&#xa;            Vec2[] points = curve.linearize(curve.recommendedSubdivisions());&#xa;&#xa;            for (int i = 1; i &lt; points.length; i++) {&#xa;&#xa;                g.drawLine(&#xa;                    (int) points[i-1].x,&#xa;                    (int) points[i-1].y,&#xa;                    (int) points[i].x,&#xa;                    (int) points[i].y);&#xa;            }&#xa;&#xa;            points = curve.getControlPoints();&#xa;&#xa;            for (int i = 0; i &lt; points.length; i++) {&#xa;&#xa;                g.drawOval(&#xa;                    (int) points[i].x - offset,&#xa;                    (int) points[i].y - offset,&#xa;                    pointsize, pointsize);&#xa;            }&#xa;        }&#xa;&#xa;        for (Vertex vert : draftform.getVerts()) {&#xa;&#xa;            g.fillOval(&#xa;                (int) vert.x - offset,&#xa;                (int) vert.y - offset,&#xa;                pointsize, pointsize);&#xa;        }&#xa;&#xa;        g.setColor(Color.BLUE);&#xa;        for (Vertex vert : toolkit.getSelectedVerts()) {&#xa;&#xa;            g.fillOval(&#xa;                (int) vert.x - offset,&#xa;                (int) vert.y - offset,&#xa;                pointsize, pointsize);&#xa;        }&#xa;    }&#xa;}"/>
@@ -178,7 +186,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="661" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="636" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

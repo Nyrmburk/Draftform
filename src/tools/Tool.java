@@ -1,14 +1,14 @@
 package tools;
 
-import draftform.Vec2;
+import draftform.Vertex;
 
 public abstract class Tool {
 
 	protected Toolkit toolkit;
 
-	public abstract void start(Vec2 point);
+	public abstract void start(Vertex point);
 
-	public abstract void modify(Vec2 point);
+	public abstract void modify(Vertex point);
 
 	public abstract void end();
 

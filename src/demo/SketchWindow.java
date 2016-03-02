@@ -11,6 +11,8 @@ import draftform.Vec2;
 import draftform.Vertex;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.util.Iterator;
 import tools.BezierTool;
 import tools.SelectTool;
 import tools.Toolkit;
@@ -33,7 +35,9 @@ public class SketchWindow extends javax.swing.JFrame {
      */
     public SketchWindow() {
         initComponents();
+        jpnlDraw.requestFocus();
         toolkit.setSnapRadius(5);
+        toolkit.setSnapToPoints(true);
     }
 
     /**
@@ -113,12 +117,15 @@ public class SketchWindow extends javax.swing.JFrame {
         };
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setFocusable(false);
 
         jpnlButtons.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jpnlButtons.setFocusable(false);
 
         buttonGroup.add(jradSelect);
         jradSelect.setSelected(true);
         jradSelect.setText("Select");
+        jradSelect.setFocusable(false);
         jradSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jradSelectActionPerformed(evt);
@@ -127,6 +134,7 @@ public class SketchWindow extends javax.swing.JFrame {
 
         buttonGroup.add(jradVertex);
         jradVertex.setText("Vertex");
+        jradVertex.setFocusable(false);
         jradVertex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jradVertexActionPerformed(evt);
@@ -135,6 +143,7 @@ public class SketchWindow extends javax.swing.JFrame {
 
         buttonGroup.add(jradBezier);
         jradBezier.setText("Bezier");
+        jradBezier.setFocusable(false);
         jradBezier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jradBezierActionPerformed(evt);
@@ -143,6 +152,7 @@ public class SketchWindow extends javax.swing.JFrame {
 
         buttonGroup.add(jradCircle);
         jradCircle.setText("Circle");
+        jradCircle.setFocusable(false);
         jradCircle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jradCircleActionPerformed(evt);
@@ -151,6 +161,7 @@ public class SketchWindow extends javax.swing.JFrame {
 
         buttonGroup.add(jradPolygon);
         jradPolygon.setText("Polygon");
+        jradPolygon.setFocusable(false);
         jradPolygon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jradPolygonActionPerformed(evt);
@@ -203,12 +214,17 @@ public class SketchWindow extends javax.swing.JFrame {
                 jpnlDrawMouseReleased(evt);
             }
         });
+        jpnlDraw.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jpnlDrawKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpnlDrawLayout = new javax.swing.GroupLayout(jpnlDraw);
         jpnlDraw.setLayout(jpnlDrawLayout);
         jpnlDrawLayout.setHorizontalGroup(
             jpnlDrawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 661, Short.MAX_VALUE)
+            .addGap(0, 636, Short.MAX_VALUE)
         );
         jpnlDrawLayout.setVerticalGroup(
             jpnlDrawLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +239,7 @@ public class SketchWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jpnlButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpnlDraw, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+                .addComponent(jpnlDraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -282,6 +298,14 @@ public class SketchWindow extends javax.swing.JFrame {
     private void jpnlDrawMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnlDrawMouseReleased
         toolkit.end();
     }//GEN-LAST:event_jpnlDrawMouseReleased
+
+    private void jpnlDrawKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jpnlDrawKeyTyped
+        
+        if (evt.getKeyChar() == KeyEvent.VK_DELETE)
+            toolkit.removeSelection();
+        
+        repaint();
+    }//GEN-LAST:event_jpnlDrawKeyTyped
     
     /**
      * @param args the command line arguments
