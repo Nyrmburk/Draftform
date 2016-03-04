@@ -12,8 +12,9 @@ import draftform.Vertex;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.util.Iterator;
+import tools.ArcTool;
 import tools.BezierTool;
+import tools.PenTool;
 import tools.SelectTool;
 import tools.Toolkit;
 import tools.VertexTool;
@@ -30,6 +31,9 @@ public class SketchWindow extends javax.swing.JFrame {
     private final SelectTool SELECT = new SelectTool();
     private final VertexTool VERTEX = new VertexTool();
     private final BezierTool BEZIER = new BezierTool();
+    private final ArcTool ARC = new ArcTool();
+    private final PenTool PEN = new PenTool();
+    
     /**
      * Creates new form SketchWindow
      */
@@ -54,7 +58,8 @@ public class SketchWindow extends javax.swing.JFrame {
         jradSelect = new javax.swing.JRadioButton();
         jradVertex = new javax.swing.JRadioButton();
         jradBezier = new javax.swing.JRadioButton();
-        jradCircle = new javax.swing.JRadioButton();
+        jradArc = new javax.swing.JRadioButton();
+        jradPenTool = new javax.swing.JRadioButton();
         jradPolygon = new javax.swing.JRadioButton();
         jpnlDraw = new javax.swing.JPanel() {
 
@@ -150,18 +155,25 @@ public class SketchWindow extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup.add(jradCircle);
-        jradCircle.setText("Circle");
-        jradCircle.setFocusable(false);
-        jradCircle.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup.add(jradArc);
+        jradArc.setText("Arc");
+        jradArc.setFocusable(false);
+        jradArc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jradCircleActionPerformed(evt);
+                jradArcActionPerformed(evt);
             }
         });
 
-        buttonGroup.add(jradPolygon);
+        buttonGroup.add(jradPenTool);
+        jradPenTool.setText("Pen");
+        jradPenTool.setFocusable(false);
+        jradPenTool.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jradPenToolActionPerformed(evt);
+            }
+        });
+
         jradPolygon.setText("Polygon");
-        jradPolygon.setFocusable(false);
         jradPolygon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jradPolygonActionPerformed(evt);
@@ -178,7 +190,8 @@ public class SketchWindow extends javax.swing.JFrame {
                     .addComponent(jradSelect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jradVertex, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jradBezier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jradCircle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jradArc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jradPenTool, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jradPolygon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -192,7 +205,9 @@ public class SketchWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jradBezier)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jradCircle)
+                .addComponent(jradArc)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jradPenTool)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jradPolygon)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -267,13 +282,13 @@ public class SketchWindow extends javax.swing.JFrame {
         toolkit.setTool(BEZIER);
     }//GEN-LAST:event_jradBezierActionPerformed
 
-    private void jradCircleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradCircleActionPerformed
-        toolkit.setTool(null);
-    }//GEN-LAST:event_jradCircleActionPerformed
+    private void jradArcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradArcActionPerformed
+        toolkit.setTool(ARC);
+    }//GEN-LAST:event_jradArcActionPerformed
 
-    private void jradPolygonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradPolygonActionPerformed
-        toolkit.setTool(null);
-    }//GEN-LAST:event_jradPolygonActionPerformed
+    private void jradPenToolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradPenToolActionPerformed
+        toolkit.setTool(PEN);
+    }//GEN-LAST:event_jradPenToolActionPerformed
 
     
     private void jpnlDrawMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnlDrawMouseDragged
@@ -306,6 +321,10 @@ public class SketchWindow extends javax.swing.JFrame {
         
         repaint();
     }//GEN-LAST:event_jpnlDrawKeyTyped
+
+    private void jradPolygonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradPolygonActionPerformed
+        toolkit.setTool(null);
+    }//GEN-LAST:event_jradPolygonActionPerformed
     
     /**
      * @param args the command line arguments
@@ -346,8 +365,9 @@ public class SketchWindow extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup;
     private javax.swing.JPanel jpnlButtons;
     private javax.swing.JPanel jpnlDraw;
+    private javax.swing.JRadioButton jradArc;
     private javax.swing.JRadioButton jradBezier;
-    private javax.swing.JRadioButton jradCircle;
+    private javax.swing.JRadioButton jradPenTool;
     private javax.swing.JRadioButton jradPolygon;
     private javax.swing.JRadioButton jradSelect;
     private javax.swing.JRadioButton jradVertex;

@@ -158,11 +158,11 @@ public class Toolkit {
 				if (point.distance(curve.getEnd()) < getSnapRadius())
 					return curve.getEnd();
 
-				for (Vertex vert : curve.getControlPoints()) {
-
-					if (point.distance(vert) < getSnapRadius())
-						return vert;
-				}
+//				for (Vertex vert : curve.getControlPoints()) {
+//
+//					if (point.distance(vert) < getSnapRadius())
+//						return vert;
+//				}
 			}
 		}
 

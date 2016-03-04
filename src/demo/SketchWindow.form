@@ -64,13 +64,14 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jradSelect" alignment="0" max="32767" attributes="0"/>
                       <Component id="jradVertex" alignment="0" max="32767" attributes="0"/>
                       <Component id="jradBezier" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jradCircle" max="32767" attributes="0"/>
+                      <Component id="jradArc" max="32767" attributes="0"/>
+                      <Component id="jradPenTool" alignment="0" max="32767" attributes="0"/>
                       <Component id="jradPolygon" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -87,7 +88,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jradBezier" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jradCircle" min="-2" max="-2" attributes="0"/>
+                  <Component id="jradArc" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jradPenTool" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jradPolygon" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -133,25 +136,33 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradBezierActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jradCircle">
+        <Component class="javax.swing.JRadioButton" name="jradArc">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Circle"/>
+            <Property name="text" type="java.lang.String" value="Arc"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradCircleActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradArcActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="jradPenTool">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroup"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Pen"/>
+            <Property name="focusable" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradPenToolActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jradPolygon">
           <Properties>
-            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="buttonGroup"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Polygon"/>
-            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jradPolygonActionPerformed"/>
