@@ -11,15 +11,15 @@ public class Arc extends Curve {
 		Vec2 q = pt1.multiply(pt1);
 		Vec2 p = pt2.multiply(pt2);
 		
-		float ratio = -q.y / p.y;
+		float ratio = -q.getY() / p.getY();
 		Vec2 r = p.multiply(ratio);
 		
-		float width = (float) Math.sqrt((q.x + r.x) / (1 + ratio));
+		float width = (float) Math.sqrt((q.getX() + r.getX()) / (1 + ratio));
 		
-		ratio = -q.x / p.x;
+		ratio = -q.getX() / p.getX();
 		Vec2 s = p.multiply(ratio);
 		
-		float height = (float) Math.sqrt((q.y + s.y) / (1 + ratio));
+		float height = (float) Math.sqrt((q.getY() + s.getY()) / (1 + ratio));
 		
 		return new Vec2(width, height);
 	}
@@ -53,6 +53,8 @@ public class Arc extends Curve {
 	@Override
 	public void addVertex(Vertex v) {
 
+		v.addCurve(this);
+		
 		if (start == null)
 			start = v;
 
@@ -73,6 +75,22 @@ public class Arc extends Curve {
 			start = center;
 		if (end == v)
 			end = center;
+	}
+	
+	@Override
+	public void replaceVertex(Vertex oldVert, Vertex newVert) {
+		
+		newVert.addCurve(this);
+		
+		if (start == oldVert)
+			start = newVert;
+
+		if (end == oldVert)
+			end = newVert;
+
+		if (center == oldVert) {
+			center = newVert;
+		}
 	}
 
 	@Override
@@ -95,8 +113,8 @@ public class Arc extends Curve {
 			
 			Vec2 size = ellipse(relativeStart, relativeEnd);
 			
-			float start = (float) Math.atan2(relativeStart.y / size.y, relativeStart.x / size.x);
-			float end = (float) Math.atan2(relativeEnd.y / size.y, relativeEnd.x / size.x);
+			float start = (float) Math.atan2(relativeStart.getY() / size.getY(), relativeStart.getX() / size.getX());
+			float end = (float) Math.atan2(relativeEnd.getY() / size.getY(), relativeEnd.getX() / size.getX());
 			float eval;
 			float range = (end - start);
 			if (range > Math.PI) {
@@ -109,9 +127,9 @@ public class Arc extends Curve {
 				eval = start + range * t;
 			}
 
-			Vec2 point = new Vec2((float) (size.x * Math.cos(eval)), (float) (size.y * Math.sin(eval)));
+			Vec2 point = new Vec2((float) (size.getX() * Math.cos(eval)), (float) (size.getY() * Math.sin(eval)));
 			
-			if (Float.compare(point.x, Float.NaN) != 0 && Float.compare(point.y, Float.NaN) != 0)
+			if (Float.compare(point.getX(), Float.NaN) != 0 && Float.compare(point.getY(), Float.NaN) != 0)
 				return point.add(center);
 		}
 		

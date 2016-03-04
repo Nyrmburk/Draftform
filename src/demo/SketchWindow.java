@@ -72,12 +72,12 @@ public class SketchWindow extends javax.swing.JFrame {
                 for (Curve curve : draftform.getCurves()) {
 
                     g.fillOval(
-                        (int) curve.getStart().x - offset,
-                        (int) curve.getStart().y - offset,
+                        (int) curve.getStart().getX() - offset,
+                        (int) curve.getStart().getY() - offset,
                         pointsize, pointsize);
                     g.fillOval(
-                        (int) curve.getEnd().x - offset,
-                        (int) curve.getEnd().y - offset,
+                        (int) curve.getEnd().getX() - offset,
+                        (int) curve.getEnd().getY() - offset,
                         pointsize, pointsize);
 
                     Vec2[] points = curve.linearize(curve.recommendedSubdivisions());
@@ -85,10 +85,10 @@ public class SketchWindow extends javax.swing.JFrame {
                     for (int i = 1; i < points.length; i++) {
 
                         g.drawLine(
-                            (int) points[i-1].x,
-                            (int) points[i-1].y,
-                            (int) points[i].x,
-                            (int) points[i].y);
+                            (int) points[i-1].getX(),
+                            (int) points[i-1].getY(),
+                            (int) points[i].getX(),
+                            (int) points[i].getY());
                     }
 
                     points = curve.getControlPoints();
@@ -96,8 +96,8 @@ public class SketchWindow extends javax.swing.JFrame {
                     for (int i = 0; i < points.length; i++) {
 
                         g.drawOval(
-                            (int) points[i].x - offset,
-                            (int) points[i].y - offset,
+                            (int) points[i].getX() - offset,
+                            (int) points[i].getY() - offset,
                             pointsize, pointsize);
                     }
                 }
@@ -105,8 +105,8 @@ public class SketchWindow extends javax.swing.JFrame {
                 for (Vertex vert : draftform.getVerts()) {
 
                     g.fillOval(
-                        (int) vert.x - offset,
-                        (int) vert.y - offset,
+                        (int) vert.getX() - offset,
+                        (int) vert.getY() - offset,
                         pointsize, pointsize);
                 }
 
@@ -114,8 +114,8 @@ public class SketchWindow extends javax.swing.JFrame {
                 for (Vertex vert : toolkit.getSelectedVerts()) {
 
                     g.fillOval(
-                        (int) vert.x - offset,
-                        (int) vert.y - offset,
+                        (int) vert.getX() - offset,
+                        (int) vert.getY() - offset,
                         pointsize, pointsize);
                 }
             }

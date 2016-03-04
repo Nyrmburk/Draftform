@@ -2,8 +2,8 @@ package draftform;
 
 public class Vec2 {
 	
-	public float x;
-	public float y;
+	private float x;
+	private float y;
 	
 	public Vec2() {
 	}
@@ -17,6 +17,16 @@ public class Vec2 {
 	public Vec2(Vec2 copy) {
 		
 		this(copy.x, copy.y);
+	}
+	
+	public float getX() {
+		
+		return x;
+	}
+	
+	public float getY() {
+		
+		return y;
 	}
 	
 	public Vec2 add(Vec2 toAdd) {
@@ -70,6 +80,11 @@ public class Vec2 {
 		float a = vec.x - x;
 		float b = vec.y - y;
 		return (float) Math.sqrt(a * a + b * b);
+	}
+	
+	public float distance() {
+		
+		return (float) Math.sqrt(x * x + y * y);
 	}
 	
 	public void setPosition(Vec2 vec) {

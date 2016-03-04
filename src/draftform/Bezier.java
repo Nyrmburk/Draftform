@@ -67,6 +67,13 @@ public class Bezier extends Curve {
 				start = points.get(0);
 		}
 	}
+	
+	public void replaceVertex(Vertex oldVert, Vertex newVert) {
+		
+		int index = points.indexOf(oldVert);
+		points.set(index, newVert);
+		newVert.addCurve(this);
+	}
 
 	public int getOrder() {
 

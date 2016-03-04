@@ -26,4 +26,12 @@ public class Vertex extends Vec2 {
 		
 		return curves;
 	}
+	
+	public void replaceVertex(Vertex toReplace) {
+		
+		this.setPosition(toReplace);
+		
+		for (Curve curve : toReplace.getCurves())
+			curve.replaceVertex(toReplace, this);
+	}
 }
