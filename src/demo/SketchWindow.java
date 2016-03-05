@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 import tools.ArcTool;
 import tools.BezierTool;
 import tools.PenTool;
+import tools.PolygonTool;
 import tools.SelectTool;
 import tools.Toolkit;
 import tools.VertexTool;
@@ -31,6 +32,7 @@ public class SketchWindow extends javax.swing.JFrame {
     private final SelectTool SELECT = new SelectTool();
     private final VertexTool VERTEX = new VertexTool();
     private final BezierTool BEZIER = new BezierTool();
+    private final PolygonTool POLYGON = new PolygonTool(32);
     private final ArcTool ARC = new ArcTool();
     private final PenTool PEN = new PenTool();
     
@@ -173,7 +175,9 @@ public class SketchWindow extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup.add(jradPolygon);
         jradPolygon.setText("Polygon");
+        jradPolygon.setFocusable(false);
         jradPolygon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jradPolygonActionPerformed(evt);
@@ -323,7 +327,7 @@ public class SketchWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jpnlDrawKeyTyped
 
     private void jradPolygonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradPolygonActionPerformed
-        toolkit.setTool(null);
+        toolkit.setTool(POLYGON);
     }//GEN-LAST:event_jradPolygonActionPerformed
     
     /**
