@@ -69,10 +69,36 @@ public class Vec2 {
 		return new Vec2(-x, -y);
 	}
 	
+	public void normalize() {
+		
+		setPosition(this.divide(distance()));
+	}
+	
 	public void translate(Vec2 delta) {
 		
-		x += delta.x;
-		y += delta.y;
+		setPosition(this.add(delta));
+	}
+	
+	public void rotate(Vec2 center, float radians) {
+		
+		double angle = Math.atan2(center.getY() - y, center.getX() - x);
+		angle += radians;
+		
+		float distance = this.distance(center);
+		
+		float x = (float) Math.cos(angle) * distance + center.getX();
+		float y = (float) Math.sin(angle) * distance + center.getY();
+		
+		setPosition(new Vec2(x, y));
+	}
+	
+	public void scale(Vec2 center, float amount) {
+		
+		Vec2 delta = this.subtract(center);
+		delta.normalize();
+		delta.multiply(amount);
+		
+		setPosition(delta.add(center));
 	}
 	
 	public float distance(Vec2 vec) {
