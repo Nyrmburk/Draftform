@@ -39,7 +39,8 @@ public class SelectTool extends Tool {
 			}
 		}
 		
-		toolkit.clearSelection();
+		if (single)
+			toolkit.clearSelection();
 	}
 	
 	private boolean select(Vertex point, Vertex test) {

@@ -31,8 +31,10 @@ public class PenTool extends Tool {
 			startVert.replaceVertex(point);
 		}
 		
-		if (nextModifyVert != null)
+		if (nextModifyVert != null) {
 			previousCurve.addVertex(nextModifyVert);
+			nextModifyVert = null; 
+		}
 		
 		currentCurve = new Bezier();
 		currentCurve.addVertex(startVert);
