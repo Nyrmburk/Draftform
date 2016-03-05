@@ -16,6 +16,7 @@ import tools.ArcTool;
 import tools.BezierTool;
 import tools.PenTool;
 import tools.PolygonTool;
+import tools.RotateTool;
 import tools.SelectTool;
 import tools.Toolkit;
 import tools.VertexTool;
@@ -32,7 +33,8 @@ public class SketchWindow extends javax.swing.JFrame {
     private final SelectTool SELECT = new SelectTool();
     private final VertexTool VERTEX = new VertexTool();
     private final BezierTool BEZIER = new BezierTool();
-    private final PolygonTool POLYGON = new PolygonTool(32);
+    private final PolygonTool POLYGON = new PolygonTool(10);
+    private final RotateTool ROTATE = new RotateTool();
     private final ArcTool ARC = new ArcTool();
     private final PenTool PEN = new PenTool();
     
@@ -63,6 +65,7 @@ public class SketchWindow extends javax.swing.JFrame {
         jradArc = new javax.swing.JRadioButton();
         jradPenTool = new javax.swing.JRadioButton();
         jradPolygon = new javax.swing.JRadioButton();
+        jradRotate = new javax.swing.JRadioButton();
         jpnlDraw = new javax.swing.JPanel() {
 
             public void paintComponent(Graphics g) {
@@ -184,6 +187,15 @@ public class SketchWindow extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup.add(jradRotate);
+        jradRotate.setText("Rotate");
+        jradRotate.setFocusable(false);
+        jradRotate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jradRotateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpnlButtonsLayout = new javax.swing.GroupLayout(jpnlButtons);
         jpnlButtons.setLayout(jpnlButtonsLayout);
         jpnlButtonsLayout.setHorizontalGroup(
@@ -196,7 +208,8 @@ public class SketchWindow extends javax.swing.JFrame {
                     .addComponent(jradBezier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jradArc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jradPenTool, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jradPolygon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jradPolygon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jradRotate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jpnlButtonsLayout.setVerticalGroup(
@@ -214,6 +227,8 @@ public class SketchWindow extends javax.swing.JFrame {
                 .addComponent(jradPenTool)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jradPolygon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jradRotate)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -329,6 +344,10 @@ public class SketchWindow extends javax.swing.JFrame {
     private void jradPolygonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradPolygonActionPerformed
         toolkit.setTool(POLYGON);
     }//GEN-LAST:event_jradPolygonActionPerformed
+
+    private void jradRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradRotateActionPerformed
+        toolkit.setTool(ROTATE);
+    }//GEN-LAST:event_jradRotateActionPerformed
     
     /**
      * @param args the command line arguments
@@ -373,6 +392,7 @@ public class SketchWindow extends javax.swing.JFrame {
     private javax.swing.JRadioButton jradBezier;
     private javax.swing.JRadioButton jradPenTool;
     private javax.swing.JRadioButton jradPolygon;
+    private javax.swing.JRadioButton jradRotate;
     private javax.swing.JRadioButton jradSelect;
     private javax.swing.JRadioButton jradVertex;
     // End of variables declaration//GEN-END:variables

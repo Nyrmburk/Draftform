@@ -81,7 +81,7 @@ public class Vec2 {
 	
 	public void rotate(Vec2 center, float radians) {
 		
-		double angle = Math.atan2(center.getY() - y, center.getX() - x);
+		double angle = Math.atan2(y - center.getY(), x - center.getX());
 		angle += radians;
 		
 		float distance = this.distance(center);
