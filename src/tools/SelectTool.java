@@ -97,4 +97,9 @@ public class SelectTool extends Tool {
 
 		this.single = single;
 	}
+	
+	public boolean usesSelection() {
+		
+		return true;
+	}
 }

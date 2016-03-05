@@ -18,6 +18,7 @@ public class PolygonTool extends Tool {
 
 	@Override
 	public void start(Vertex point) {
+		
 		center = point;
 
 		Vec2[] points = polygon(center, 1, sides);
@@ -74,5 +75,10 @@ public class PolygonTool extends Tool {
 
 	@Override
 	public void reset() {
+	}
+	
+	public boolean usesSelection() {
+		
+		return false;
 	}
 }

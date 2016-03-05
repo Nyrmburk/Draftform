@@ -13,6 +13,8 @@ public abstract class Tool {
 	public abstract void end();
 
 	public abstract void reset();
+	
+	public abstract boolean usesSelection();
 
 	public void setToolkit(Toolkit toolkit) {
 

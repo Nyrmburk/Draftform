@@ -44,6 +44,9 @@ public class Toolkit {
 		Vertex vert = getSnap(point);
 		if (vert == null)
 			vert = new Vertex(point);
+		
+		if (!currentTool.usesSelection())
+			clearSelection();
 
 		currentTool.start(vert);
 	}

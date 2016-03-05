@@ -93,6 +93,11 @@ public class PenTool extends Tool {
 		startVert = null;
 	}
 	
+	public boolean usesSelection() {
+		
+		return false;
+	}
+	
 	private class EndpointVertex extends ReactiveVertex {
 
 		List<BezierPair> pairs = new LinkedList<>();

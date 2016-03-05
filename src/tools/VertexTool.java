@@ -7,9 +7,9 @@ public class VertexTool extends Tool {
 	public Vertex currentVertex;
 
 	public void start(Vertex point) {
+		
 		currentVertex = new Vertex(point);
 		toolkit.getDraftform().getVerts().add(currentVertex);
-		toolkit.clearSelection();
 	}
 
 	public void modify(Vertex point) {
@@ -23,5 +23,10 @@ public class VertexTool extends Tool {
 
 	public void reset() {
 		end();
+	}
+	
+	public boolean usesSelection() {
+		
+		return false;
 	}
 }

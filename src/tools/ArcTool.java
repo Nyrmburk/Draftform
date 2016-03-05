@@ -12,7 +12,6 @@ public class ArcTool extends Tool {
 	@Override
 	public void start(Vertex point) {
 		
-		toolkit.clearSelection();
 		currentHandle = point;
 		
 		if (curve == null) {
@@ -38,5 +37,10 @@ public class ArcTool extends Tool {
 	public void reset() {
 		curve = null;
 		currentHandle = null;
+	}
+	
+	public boolean usesSelection() {
+		
+		return false;
 	}
 }

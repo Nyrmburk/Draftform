@@ -7,7 +7,6 @@ public class RotateTool extends Tool {
 
 	private Vec2 center;
 	private float lastAngle = 0;
-	private boolean first = true;
 	
 	@Override
 	public void start(Vertex point) {
@@ -22,24 +21,20 @@ public class RotateTool extends Tool {
 		float deltaAngle = newAngle - lastAngle;
 		lastAngle = newAngle;
 		
-		if (first) {
-			deltaAngle = 0;
-			first = false;
-		}
-		
-		for (Vec2 vec : toolkit.getSelectedVerts()) {
-			
+		for (Vec2 vec : toolkit.getSelectedVerts())
 			vec.rotate(center, deltaAngle);
-		}
 	}
 
 	@Override
 	public void end() {
-		first = true;
 	}
 
 	@Override
 	public void reset() {
-		end();
+	}
+	
+	public boolean usesSelection() {
+		
+		return true;
 	}
 }
