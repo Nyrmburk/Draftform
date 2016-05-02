@@ -18,6 +18,7 @@ public class Toolkit {
 	private Set<Curve> selectedCurves = new HashSet<>();
 
 	private float snapRadius;
+	private float gridInterval;
 	private boolean snapGrid;
 	private boolean snapPoint;
 
@@ -48,6 +49,7 @@ public class Toolkit {
 		if (!currentTool.usesSelection())
 			clearSelection();
 
+		currentTool.setActive(true);
 		currentTool.start(vert);
 	}
 
@@ -66,6 +68,7 @@ public class Toolkit {
 		if (currentTool == null)
 			return;
 
+		currentTool.setActive(false);
 		currentTool.end();
 	}
 
@@ -73,7 +76,8 @@ public class Toolkit {
 		if (currentTool == null)
 			return;
 
-		currentTool.reset();
+		if (!currentTool.isActive())
+			currentTool.reset();
 	}
 
 	public void setSnapRadius(float radius) {
@@ -142,6 +146,16 @@ public class Toolkit {
 
 		return snapPoint;
 	}
+	
+	public void setSnapToGrid(boolean snapGrid) {
+
+		this.snapGrid = snapGrid;
+	}
+
+	public boolean doesSnapToGrid() {
+
+		return snapGrid;
+	}
 
 	public Vertex getSnap(Vec2 point) {
 
@@ -167,6 +181,11 @@ public class Toolkit {
 //						return vert;
 //				}
 			}
+		}
+		
+		if (doesSnapToGrid()) {
+			
+			Math.IEEEremainder(point.getX(), gridInterval);
 		}
 
 		return null;

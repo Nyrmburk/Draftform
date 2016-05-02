@@ -12,6 +12,8 @@ import draftform.Vertex;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
 import tools.ArcTool;
 import tools.BezierTool;
 import tools.PenTool;
@@ -312,13 +314,26 @@ public class SketchWindow extends javax.swing.JFrame {
     
     private void jpnlDrawMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnlDrawMouseDragged
 
+//    	System.out.println(evt);
+//    	System.out.println(Integer.toBinaryString(evt.getModifiers()));
+//    	System.out.println(Integer.toBinaryString(evt.getModifiers() & (MouseEvent.BUTTON1 << 4)));
+    	
+    	//don't ask why. I don't know. If you really must know, look at the comment above.
+    	if ((evt.getModifiers() & (MouseEvent.BUTTON1 << 4)) == 0)
+    		return;
+    	
         toolkit.modify(new Vec2(evt.getPoint().x, evt.getPoint().y));
         jpnlDraw.repaint();
     }//GEN-LAST:event_jpnlDrawMouseDragged
 
     private void jpnlDrawMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnlDrawMousePressed
 
-        if (evt.getButton() != 1) {
+//    	System.out.println(evt);
+//    	System.out.println(Integer.toBinaryString(evt.getModifiers()));
+//    	System.out.println(Integer.toBinaryString(evt.getModifiers() & (MouseEvent.BUTTON1 << 4)));
+    	
+    	//don't ask why. I don't know. If you really must know, look at the comment above.
+    	if ((evt.getModifiers() & (MouseEvent.BUTTON1 << 4)) == 0) {
             toolkit.resetTool();
             return;
         }
@@ -330,6 +345,15 @@ public class SketchWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jpnlDrawMousePressed
 
     private void jpnlDrawMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpnlDrawMouseReleased
+    	
+//    	System.out.println(evt);
+//    	System.out.println(Integer.toBinaryString(evt.getModifiers()));
+//    	System.out.println(Integer.toBinaryString(evt.getModifiers() & (MouseEvent.BUTTON1 << 4)));
+    	
+    	//don't ask why. I don't know. If you really must know, look at the comment above.
+    	if ((evt.getModifiers() & (MouseEvent.BUTTON1 << 4)) == 0)
+    		return;
+    	
         toolkit.end();
     }//GEN-LAST:event_jpnlDrawMouseReleased
 

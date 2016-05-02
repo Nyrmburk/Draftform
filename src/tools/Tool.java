@@ -5,6 +5,8 @@ import draftform.Vertex;
 public abstract class Tool {
 
 	protected Toolkit toolkit;
+	
+	private boolean active;
 
 	public abstract void start(Vertex point);
 
@@ -19,5 +21,15 @@ public abstract class Tool {
 	public void setToolkit(Toolkit toolkit) {
 
 		this.toolkit = toolkit;
+	}
+	
+	public boolean isActive() {
+		
+		return active;
+	}
+	
+	protected void setActive(boolean active) {
+		
+		this.active = active;
 	}
 }

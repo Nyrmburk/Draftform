@@ -15,7 +15,7 @@ public class SelectTool extends Tool {
 
 	@Override
 	public void start(Vertex point) {
-
+		
 		start = point;
 		
 		for (Vertex vert : toolkit.getDraftform().getVerts()) {
