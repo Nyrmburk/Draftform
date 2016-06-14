@@ -13,4 +13,4 @@ Some of the tools are a little rough righ now including the Arc tool and Select 
 
 I made this because I couldn't find any raw 2d modeling toolkit. In my game that I am creating, The player needs to be able to draw shapes in order to create levels. I hope this can help others needing a 2d modeler.
 
-Draftform is licenced under the GPLv3 license.
+Draftform is licensed under the GPLv3 license.
