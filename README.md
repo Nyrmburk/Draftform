@@ -11,6 +11,8 @@ Draftform is a 2D parametric modeling toolkit. It primarily operates on bezier c
 </ul>
 Some of the tools are a little rough righ now including the Arc tool and Select tool. Using a combination of these tools one can draw nearly any shape in a vector format.
 
+![<a-screenshot>](http://i.imgur.com/7MWyEu0.png)
+
 I made this because I couldn't find any raw 2d modeling toolkit. In my game that I am creating, The player needs to be able to draw shapes in order to create levels. I hope this can help others needing a 2d modeler.
 
 Draftform is licensed under the GPLv3 license.
